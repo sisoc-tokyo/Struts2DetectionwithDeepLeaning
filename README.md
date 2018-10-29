@@ -7,35 +7,19 @@ Our tool consists of the following steps to reduce false detection rate and supp
 * Step2 (Machine Learning): Use unsupervised machine learning and anomaly detection in order to detect suspicious commands that attackers tend to use as outliers. 
 * Step3 (Real-time alert): Raise real-time alerts using Elastic Stack if attack activities are detected.
 
-<img src="Defending attacks leveraging Struts2.pdf" alt="Overview of the research" title="Overview of the Reseach" width="50%" height="50%">
+<a href="Defending attacks leveraging Struts2.pdf" target="_blank">White paper</a>
+<img src="summaryOfTheMethod.png" alt="Overview of the research" title="Overview of the Reseach" width="50%" height="50%">
 
 ## Tool detail
 ###	Function of the tool
 Our tool consists of the following components:
-* Detection Server: Detects attack activities leveraging Domain Administrator privileges using signature based detection and Machine Learning. A Web API for detection is provided.
-* Log Server: Collects the Domain Controller’s Event logs in real-time and creates log visualizations.
+* AI Server: Detects attacks using deep learning. A Web API for detection is provided.
+* Struts Server: Block atack request using Servlet Filter.
 
-1. Event logs of the Domain Controller are sent to the Detection Server in real-time.
-2. The Detection Server analyzes the logs using signature-based algorithms and machine leaning in order to distinguish malicious attack activities from event logs.
-3. Send an alert email to the security administrator and add a flag that indicates an attack to the log if an attack is detected.
-4. Logs are sent to the Log Server.
-5. The Log Server visualizes the logs and the detection result.
-
-###	Input of the tools: Event logs of the Domain Controller. 
-4672: An account assigned with special privileges logged on.
-4674: An operation was attempted on a privileged object
-4688: A new process was created
-4768: A Kerberos authentication ticket (TGT) was requested
-4769: A Kerberos service ticket was requested
-
-###	Output of the tool
-Distinguish logs that include malicious attack activities from logs that record normal and legitimate operations, and identity infected computers and accounts. If attacks are detected, send email alerts to security administrators.
-
-###	System Requirements
-* Domain Controller
-    * Winlogbeat (Open-source log analysis platform)
-* Elactic Stack (Open-source + custom programs)
-    * Logstash: Parse logs, launch the detection program and transfer logs to Elastic Search
-    * Elastic Search: Collects logs and provides API interface for log detection
-    * Kibana: Visualizes the detection results
-* Detection Server: Runs detection programs(custom programs) 
+1. Struts Server: receives requests.
+2. Struts Server: Extract text included in URL, header, body from request.
+3. Struts Server: Extract symbols form text in request.
+4. Struts Server: Call detection program with extracted symbols.
+5. AI Server: Analyze symbols with deep learning 
+6. AI Server: Return result code 
+7. Struts Server: Check the result code and allow or block request
