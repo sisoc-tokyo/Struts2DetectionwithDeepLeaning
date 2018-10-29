@@ -2,12 +2,8 @@
 
 This is a sample of real-time protection tool against attacks leveraging OGNL using Deep Learning and Servlet Filter.
 
-Our tool consists of the following steps to reduce false detection rate and support immediate incident response.
-* Step1 (Signature based detection): Analyze Event logs focusing on the characteristics of the attack activities.
-* Step2 (Machine Learning): Use unsupervised machine learning and anomaly detection in order to detect suspicious commands that attackers tend to use as outliers. 
-* Step3 (Real-time alert): Raise real-time alerts using Elastic Stack if attack activities are detected.
-
 <a href="Defending attacks leveraging Struts2.pdf" target="_blank">White paper</a>
+<br/>
 <img src="summaryOfTheMethod.png" alt="Overview of the research" title="Overview of the Reseach" width="50%" height="50%">
 
 ## Tool detail
